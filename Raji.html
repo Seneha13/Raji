@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Valentine ❤️</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+/* ===== BODY ===== */
+body{
+    margin:0;
+    min-height:100vh;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#ffdde1,#ee9ca7,#c471ed,#fbc8d4);
+    background-size:600% 600%;
+    animation:bgMove 18s ease infinite;
+    font-family:'Poppins',sans-serif;
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* Glow clouds */
+.cloud{
+    position:absolute;
+    width:450px;
+    height:450px;
+    background:radial-gradient(circle,rgba(255,255,255,.65),transparent 70%);
+    filter:blur(90px);
+    animation:floatCloud 16s infinite alternate;
+}
+.cloud.one{top:-150px;left:-150px}
+.cloud.two{bottom:-150px;right:-150px;animation-delay:6s}
+
+@keyframes floatCloud{
+    from{transform:translateY(0)}
+    to{transform:translateY(-90px)}
+}
+
+/* Floating hearts */
+.heart{
+    position:absolute;
+    bottom:-20px;
+    opacity:.85;
+    animation:floatUp 9s linear infinite;
+}
+@keyframes floatUp{
+    from{transform:translateY(0) scale(.9);opacity:1}
+    to{transform:translateY(-120vh) scale(1.2);opacity:0}
+}
+
+/* ===== CARD ===== */
+.card{
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(14px);
+    border-radius:40px;
+    box-shadow:0 40px 90px rgba(233,30,99,.35);
+    padding:40px;
+    max-width:720px;
+    width:95%;
+    text-align:center;
+    animation:pop .8s ease;
+}
+
+@keyframes pop{
+    from{transform:scale(.8);opacity:0}
+    to{transform:scale(1);opacity:1}
+}
+
+.hidden{display:none}
+
+/* Buttons */
+.btn-love{
+    border-radius:50px;
+    padding:15px 40px;
+    font-size:22px;
+    margin:12px;
+    transition:.35s;
+}
+.btn-love:hover{
+    transform:scale(1.2);
+    box-shadow:0 10px 25px rgba(233,30,99,.45);
+}
+
+/* Images */
+.img-style{
+    width:100%;
+    max-height:270px;
+    object-fit:cover;
+    border-radius:35px;
+    margin-bottom:22px;
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+/* ===== LOVE LETTER ===== */
+.love-box{
+    margin-top:30px;
+    padding:35px;
+    border-radius:35px;
+    background:linear-gradient(135deg,#fff1f7,#ffe4ec);
+    box-shadow:
+        0 0 25px rgba(233,30,99,.35),
+        inset 0 0 20px rgba(255,255,255,.6);
+    animation:fadeUp 1.4s ease;
+
+    max-height:330px;
+    overflow-y:auto;
+}
+
+/* Scrollbar */
+.love-box::-webkit-scrollbar{
+    width:6px;
+}
+.love-box::-webkit-scrollbar-thumb{
+    background:#e91e63;
+    border-radius:10px;
+}
+
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(50px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+.love-title{
+    font-family:'Great Vibes',cursive;
+    font-size:42px;
+    color:#e91e63;
+    margin-bottom:15px;
+    text-shadow:0 4px 12px rgba(233,30,99,.4);
+}
+
+.type-text{
+    font-size:24px;
+    line-height:2.2;
+    white-space:pre-line;
+    color:#444;
+}
+
+.highlight{
+    color:#e91e63;
+    font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<div class="cloud one"></div>
+<div class="cloud two"></div>
+
+<div class="card">
+
+<!-- Step 1 -->
+<div id="step1">
+    <h2 style="font-family:'Dancing Script',cursive;font-size:40px;">Hey ❤️</h2>
+    <p style="font-size:24px;">I want to ask you something…</p>
+    <button class="btn btn-success btn-love" onclick="answer1(true)">Yes</button>
+    <button class="btn btn-danger btn-love" onclick="answer1(false)">No</button>
+</div>
+
+<!-- Angry -->
+<div id="angry" class="hidden">
+    <img src="https://i.pinimg.com/200x150/2a/2a/28/2a2a288838067d2cce64f698f27c6133.jpg" class="img-style">
+    <h3 style="font-size:26px;">No nu solla koodathu 😢</h3>
+    <button class="btn btn-primary btn-love" onclick="goBack()">Go Back</button>
+</div>
+
+<!-- Step 2 -->
+<div id="step2" class="hidden">
+    <h3 style="font-size:30px;">That's good my Batman 🦇</h3>
+    <h4 style="font-size:28px;">Will you be my Valentine? 💖</h4>
+    <button class="btn btn-success btn-love" onclick="answer2(true)">Yes</button>
+    <button class="btn btn-danger btn-love" onclick="answer2(false)">No</button>
+</div>
+
+<!-- Final -->
+<div id="finalYes" class="hidden">
+    <h3 style="font-size:30px;">Click this ❤️</h3>
+    <button class="btn btn-danger btn-love" onclick="showLove()">Open My Heart 💌</button>
+</div>
+
+<!-- Love Section -->
+<div id="loveSection" class="hidden">
+    <img id="loveImage" class="img-style">
+
+    <audio id="song" controls>
+        <source src="WhatsApp Audio 2026-02-13 at 10.09.54 PM (1).mpeg">
+    </audio>
+
+    <div class="love-box">
+        <div class="love-title">For You 💗</div>
+        <div id="typeText" class="type-text"></div>
+    </div>
+</div>
+
+</div>
+
+<script>
+const images=[
+    "WhatsApp Image 2026-02-13 at 9.27.59 PM.jpeg",
+    "WhatsApp Image 2026-02-13 at 9.27.59 PM (2).jpeg",
+    "WhatsApp Image 2026-02-13 at 9.27.59 PM (1).jpeg",
+    "WhatsApp Image 2026-02-13 at 9.42.43 PM.jpeg"
+];
+
+const message=`Hey RS… ❤️
+
+Ithu namma first Valentine’s Day 💝
+Idhu small-aana surprise dhan…its not a Surprise ...my wish vachigonga
+
+Namba official ah Love Panna aaramichi 3 and half year aachu.....❤️
+Kojam kojam velalam poirukom ....but Still now I cant forgot our 1st outing thats more Special🤗
+oru oru meeting Special different feel theriyum ah..Words are not Enough to Describe those Feel da thambi💕...
+Namba Meet Pandra koja tym Ana athu ypd irukum theriyum ah🥹
+Ennagu Enga veeta vitutu irukamudiyathu ...ungala vitutum irukamudiyathu.. U know that...Adhn apo apo loosu mari pannuvan🥹
+Adjust Pannigongaaa.....2days ah kojam time spend pandringa Apdyai panna nalla irukum🤣.....
+
+Neega anaigu soninga la nee ila ma ennala iruka mudiyathu d....that situation ennagu vara kutathunu...apo i feel really blessed theriyum ah🥹
+Ipdayi enkutave irungaaaa......miss you Lot 🥹💕
+
+Apo Apo Call kutty kutty Text...thats enough rs🤗
+
+I want You until My last breadth....💕
+
+Unga kooda irundha
+ovvoru moment-um romba special 🤍
+
+En life-la
+<span class="highlight">nenga romba romba important</span> 💕
+
+Forever & ever
+unga kooda irukanum ...vitutu poirathinga....🥹🌹`;
+
+let imgIndex=0;
+
+function hideAll(){
+    document.querySelectorAll('.card > div').forEach(d=>d.classList.add('hidden'));
+}
+function answer1(a){
+    hideAll();
+    document.getElementById(a?'step2':'angry').classList.remove('hidden');
+}
+function answer2(a){
+    hideAll();
+    document.getElementById(a?'finalYes':'angry').classList.remove('hidden');
+}
+function goBack(){
+    hideAll();
+    document.getElementById('step1').classList.remove('hidden');
+}
+function showLove(){
+    hideAll();
+    document.getElementById('loveSection').classList.remove('hidden');
+    document.getElementById('typeText').innerHTML=message;
+    document.getElementById('song').play().catch(()=>{});
+
+    const img=document.getElementById("loveImage");
+    img.src=images[0];
+    setInterval(()=>{
+        imgIndex=(imgIndex+1)%images.length;
+        img.src=images[imgIndex];
+    },2200);
+}
+
+/* Hearts */
+function createHeart(){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💗";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=Math.random()*26+18+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),9000);
+}
+setInterval(createHeart,450);
+</script>
+
+</body>
+</html>
